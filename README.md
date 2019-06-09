@@ -19,6 +19,10 @@ $ sudo systemctl daemon-reload
 $ sudo systemctl restart docker
 ```
 
+# docker如何修改镜像内容
+
+在开发中我们一定会遇到官方或当前使用的镜像不能满足我们的业务场景这种情况。在这样的情况下,我们不要试图通过修改一个正在运行的容器来满足我们的业务场景,而是通过dockerfile修改镜像完成我们的业务需求。因为容器应该是一个实例对象,不通过修改类而直接修改对象肯定是十分不合理的。总结一下,配置方面的修改可以修改容器,而功能层面的修改应该通过dockerfile重新构建一个镜像,再通过这个镜像run一个容器来实现功能。
+
 # 什么是 GitLab
 
 ## [#](https://www.funtl.com/zh/gitlab/%E4%BB%80%E4%B9%88%E6%98%AF-GitLab.html#%E6%9C%AC%E8%8A%82%E8%A7%86%E9%A2%91)本节视频
@@ -600,6 +604,8 @@ docker pull 192.168.75.133:5000/nginx
 
 两个工具的功能和界面都差不多，我们以 `docker-registry-fontend` 为例讲解
 
+因为一个docker-compose可以管理多个容器的生命周期,所以把registry与front交给同一个docker-compose管理是最佳实践。
+
 ## [#](https://www.funtl.com/zh/registry/%E9%83%A8%E7%BD%B2-Docker-Registry-WebUI.html#docker-registry-frontend)docker-registry-frontend
 
 我们使用 docker-compose 来安装和运行，`docker-compose.yml` 配置如下：
@@ -628,4 +634,3 @@ services:
 ![img](https://www.funtl.com/assets/Lusifer1527005783.png)
 
 
-  
